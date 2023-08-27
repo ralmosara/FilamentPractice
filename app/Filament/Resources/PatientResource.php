@@ -36,7 +36,7 @@ class PatientResource extends Resource
             Forms\Components\DatePicker::make('date_of_birth')
                 ->required()
                 ->maxDate(now()),
-                Forms\Components\Select::make('owner_id')
+            Forms\Components\Select::make('owner_id')
                 ->relationship('owner', 'name')
                 ->searchable()
                 ->preload()
@@ -62,10 +62,13 @@ class PatientResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('date_of_birth'),
-                Tables\Columns\TextColumn::make('owner.name')->searchable(),
+                Tables\Columns\TextColumn::make('date_of_birth')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('owner.name')
+                    ->searchable(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('type')
@@ -87,7 +90,7 @@ class PatientResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-
+    
     public static function getRelations(): array
     {
         return [

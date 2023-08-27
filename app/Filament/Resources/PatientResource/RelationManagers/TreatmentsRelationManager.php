@@ -17,19 +17,20 @@ class TreatmentsRelationManager extends RelationManager
     public function form(Form $form): Form
     {
         return $form
-        ->schema([
-            Forms\Components\TextInput::make('description')
-                ->required()
-                ->maxLength(255)
-                ->columnSpan('full'),
-            Forms\Components\Textarea::make('notes')
-                ->maxLength(65535)
-                ->columnSpan('full'),
-            Forms\Components\TextInput::make('price')
-                ->numeric()
-                ->prefix('P')
-                ->maxValue(42949672.95),
-        ]);
+            ->schema([
+                Forms\Components\TextInput::make('description')
+                    ->required()
+                    ->maxLength(255)
+                    ->columnSpan('full'),
+                Forms\Components\Textarea::make('notes')
+                    ->maxLength(65535)
+                    ->columnSpan('full'),
+                Forms\Components\TextInput::make('price')
+                    ->numeric()
+                    ->prefix('P')
+                    ->maxValue(42949672.95)
+                    ->required(),
+            ]);
     }
 
     public function table(Table $table): Table
@@ -63,5 +64,4 @@ class TreatmentsRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
 }

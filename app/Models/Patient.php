@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Patient extends Model
 {
     use HasFactory;
+    
     public function owner(): BelongsTo
     {
         return $this->belongsTo(Owner::class);
@@ -19,4 +20,5 @@ class Patient extends Model
     {
         return $this->hasMany(Treatment::class);
     }
+    
 }
